@@ -1,3 +1,13 @@
+@font-face {
+	font-family: 'Queen of Clubs';
+	src: local('Queen of Clubs'), url(./fonts/QueenOfClubs-p2rO.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'Barlow';
+	src: local('Barlow'), url(./fonts/Barlow-Regular.ttf) format('truetype');
+}
+
 $dark: #230903;
 $light: #f8f4f9;
 $seconary-color: #ef5d60;
@@ -10,6 +20,20 @@ body {
 	max-width: 100%;
 	height: 100%;
 	overflow-x: hidden;
+}
+
+a {
+	text-decoration: none;
+	margin: .5em 2em 2em 1em;
+	display: inline-block;
+	outline: 0;
+	border: none;
+	cursor: pointer;
+	border-radius: 4px;
+	height: 30px;
+	color: $light;
+	background-color: $seconary-color;
+	padding: 5px 15px 0 15px;
 }
 
 // boilerplate styles
@@ -39,19 +63,39 @@ body {
 	justify-content: space-between;
 }
 
-.personal header {
+header {
 	flex-wrap: wrap;
 	justify-content: space-between;
+	padding: 0 0 .75em 2em;
 }
 
-.fetched footer {
-	align-self: end;
-	flex-basis: 100%;
-	justify-content: space-between;
+footer {
+	padding: .75em 2em 0 0;
+}
+
+footer a:hover,
+.contact:hover {
+	background-color: $tertiary-color;
 }
 
 .name {
+	font-family: 'Queen of Clubs';
 	flex-basis: 100%;
+	font-size: 5em;
+	cursor: default;
+}
+
+.name+span {
+	padding-right: 5em;
+}
+
+.name+span,
+.contact {
+	font-size: 1.5em;
+}
+
+.contact {
+	margin-top: .75em;
 }
 
 .main-flex-wrapper {
@@ -65,7 +109,7 @@ body {
 	display: grid;
 	align-items: center;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	gap: 1rem;
+	gap: 2rem;
 }
 
 .grid-container img {
@@ -74,10 +118,20 @@ body {
 	max-height: 100%;
 }
 
+
+
+
+
 //we want the flex direction to be column for less than $md
 
 @media (min-width: $md) {
 	.main-flex-wrapper {
 		flex-direction: row;
+	}
+}
+
+@media (min-width: 1149px) {
+	.contact {
+		margin-top: 0;
 	}
 }

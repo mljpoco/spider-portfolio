@@ -12,8 +12,8 @@ export default function Main() {
 			<div className='personal dark'>
 				<header className='flex-wrapper light'>
 					<span className='name'>Mitchell Poco</span>
-					<span>Software Developer | Author</span>
-					<span>Contact Me</span>
+					<span>Software Developer, Author</span>
+					<Link>Contact Me</Link>
 				</header>
 				<figure className='grid-container'>
 					<img src='./thumbnail.png' />
