@@ -30,6 +30,7 @@ export default function News() {
 				<span><li>Science</li></span>
 				<span><li>Business</li></span>
 				<span><li>Entertainment</li></span>
+				<hr />
 			</ul>
 			{
 				newsObject.articles.map(article => {

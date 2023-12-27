@@ -29,6 +29,10 @@ text {
 	font-size: 1.1em;
 }
 
+hr {
+	z-index: 2;
+}
+
 ::selection {
 	background-color: $tertiary-color;
 	color: $light;
@@ -142,11 +146,15 @@ footer a:hover {
 
 .personal {
 	flex-basis: 50%;
+	height: 100vh;
+	overflow-y: scroll;
 }
 
 .fetched-flex-wrapper {
 	display: flex;
 	flex-basis: 50%;
+	height: 100vh;
+	overflow-y: scroll;
 	flex-direction: column;
 	justify-content: space-between;
 }
