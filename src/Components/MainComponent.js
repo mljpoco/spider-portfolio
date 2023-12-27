@@ -13,16 +13,17 @@ export default function Main() {
 				<header className='flex-wrapper light'>
 					<span className='name'>Mitchell Poco</span>
 					<span>Software Developer, Author</span>
-					<Link>Contact Me</Link>
+					<div className='h-line'></div>
+					<Link className='contact'>Contact Me</Link>
 				</header>
 				<figure className='grid-container'>
 					<img src='./thumbnail.png' />
 					<img src='./thumbnail.png' />
 					<img src='./thumbnail.png' />
 					<img src='./thumbnail.png' />
-					<p>
-						*endorsement*
-					</p>
+					<p><em>
+					- "Mitchell built and deployed a front end from scratch on a tight timeline for presentation to the UN. He's dynamic and professional in his approach to problem solving, and a strong addition to any development team."
+					</em></p>
 				</figure>
 			</div>
 			<div className='fetched-flex-wrapper light'>

@@ -4,8 +4,8 @@
 }
 
 @font-face {
-	font-family: 'Barlow';
-	src: local('Barlow'), url(./fonts/Barlow-Regular.ttf) format('truetype');
+	font-family: 'DMSans';
+	src: local('DMSans'), url(./fonts/DMSans-Regular.woff) format('woff');
 }
 
 $dark: #230903;
@@ -20,29 +20,107 @@ body {
 	max-width: 100%;
 	height: 100%;
 	overflow-x: hidden;
-	font-family: 'Barlow';
+	font-family: 'DMSans';
 }
 
 text {
 	display: block;
 	text-align: right;
+	font-size: 1.1em;
+}
+
+::selection {
+	background-color: $tertiary-color;
+	color: $light;
+}
+
+ul, li {
+	list-style-type: none;
 }
 
 h1 {
 	text-align: center;
+	font-size: 1.8em;
 }
 
-header a {
-	margin-right: 10px;
+h2 {
+	margin-left: .75em;
+	align-self: center;
+}
+
+a {
 	font-size: 1.5em;
 }
 
-header a, footer a {
-	color: #0078d7;
+header {
+	position: sticky;
+	top: 0px;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-left: 1em;
 }
 
-header a:hover, footer a:hover {
-	color: $secondary-color;
+header span {
+	cursor: default;
+}
+
+header a, .categories span {
+	text-decoration: none;
+	position: relative;
+	color: $dark;
+	transition: .1s linear;
+}
+
+.categories span {
+	margin-right: 1em;
+	display: inline-block;
+	z-index: 1;
+	padding: 0 .4em .2em .4em;
+}
+
+header a:hover, .categories span:hover {
+	cursor: pointer;
+	color: $light;
+}
+
+header a::after, .categories span::after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+	width: 0;
+	background-color: $dark;
+	transition: .1s linear;
+}
+
+a:hover::after, .categories span:hover::after {
+	width: 100%;
+}
+
+p {
+	width: 200%;
+	font-size: 1.1em;
+}
+
+footer {
+	padding: .75em 2em 0 0;
+	position: sticky;
+	bottom: 0vh;
+	justify-content: space-around;
+}
+
+footer a {
+	margin-bottom: .75em;
+	margin-top: .25em;
+	text-decoration: underline transparent;
+	color: $light;
+	transition: text-decoration .3s linear;
+}
+
+footer a:hover {
+	text-decoration-color: $light;
 }
 
 // boilerplate styles
@@ -73,14 +151,12 @@ header a:hover, footer a:hover {
 	justify-content: space-between;
 }
 
-header {
-	flex-wrap: wrap;
-	justify-content: space-between;
-	padding: 0 0 .75em 1em;
-}
-
-footer {
-	padding: .75em 2em 0 0;
+.h-line {
+	visibility: hidden;
+	height: 1.25px;
+	background: $dark;
+	flex: 1;
+	margin: 1em .5em 0 .5em;
 }
 
 .name {
@@ -91,14 +167,11 @@ footer {
 }
 
 .name+span {
-	padding-right: 5em;
-}
-
-.name+span {
 	font-size: 1.5em;
 }
 
-a:has(.news-img), .news-img {
+a:has(.news-img),
+.news-img {
 	display: block;
 	margin: auto;
 	max-width: 90%;
@@ -125,6 +198,18 @@ a:has(.news-img), .news-img {
 	max-height: 100%;
 }
 
+.loading {
+	align-self: center;
+	margin-top: 40vh;
+	animation: bounce 2s ease infinite;
+}
+
+.categories {
+	align-self: center;
+	margin: 1em 1em 0 2em;
+	font-size: 1.3em;
+}
+
 
 //we want the flex direction to be column for less than $md
 
@@ -137,5 +222,21 @@ a:has(.news-img), .news-img {
 @media (min-width: 1149px) {
 	.contact {
 		margin-top: 0;
+		padding: 0 .4em .2em .4em;
 	}
+
+	.h-line {
+		visibility: visible;
+	}
+}
+
+@keyframes bounce {
+	0% {
+		transform: translateY(0%);
+	}
+
+	50% {
+		transform: translateY(-25%);
+	}
+
 }

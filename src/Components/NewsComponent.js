@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
@@ -8,20 +9,31 @@ async function fetchNews() {
 
 export default function News() {
 
+	const [category, setCategory] = useState('technology');
 	const { data: newsObject, error, isLoading } = useQuery('articlesData', fetchNews);
 
 	if (isLoading) {
-		return <figure>Loading...</figure>
+		return <h1 className='loading'>Loading...</h1>
 	}
 	if (error) {
 		return <figure>Error: {error.message}</figure>
 	}
 
+
+
 	return (
 		<>
+			<h2><u>Top Headlines in the US</u></h2>
+			<ul className='categories'>
+				<span><li>Tech</li></span>
+				<span><li>Health</li></span>
+				<span><li>Science</li></span>
+				<span><li>Business</li></span>
+				<span><li>Entertainment</li></span>
+			</ul>
 			{
 				newsObject.articles.map(article => {
-					if (article.title !== '[Removed]') {
+					if (article.title !== '[Removed]' && article.urlToImage) {
 						return (
 							<figure key={article.description} className='article-flex-wrapper'>
 								<h1>{article.title}</h1>
