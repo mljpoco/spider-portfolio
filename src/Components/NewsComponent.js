@@ -1,43 +1,58 @@
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQueries, useQuery } from 'react-query';
 import axios from 'axios';
 
-async function fetchNews() {
-	const res = await axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=9078a681190b472aa41e2074e0df4fee');
+async function fetchNews(cat) {
+	const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=${cat}&apiKey=9078a681190b472aa41e2074e0df4fee`);
+	res.data.cat = cat;
+	console.log(res.data);
 	return res.data;
 }
 
 export default function News() {
 
 	const [category, setCategory] = useState('technology');
-	const { data: newsObject, error, isLoading } = useQuery('articlesData', fetchNews);
+	// const { data: newsObject, error, isLoading } = useQuery(['articlesData', category], () => fetchNews(category));
+
+	const cats = useQueries([
+		{ queryKey: ['tech', 'technology'], queryFn: () => fetchNews('technology') },
+		{ queryKey: ['health', 'health'], queryFn: () => fetchNews('health') },
+		{ queryKey: ['science', 'science'], queryFn: () => fetchNews('science') },
+		{ queryKey: ['business', 'business'], queryFn: () => fetchNews('business') },
+		{ queryKey: ['entertainment', 'entertainment'], queryFn: () => fetchNews('entertainment') }
+	]);
+
+	const error = cats.some(obj => obj.error);
+	const isLoading = cats.some(obj => obj.isLoading);
 
 	if (isLoading) {
 		return <h1 className='loading'>Loading...</h1>
 	}
 	if (error) {
-		return <figure>Error: {error.message}</figure>
+		return <h1 className='error'>Error: {error.message}</h1>
 	}
-
-
+console.log()
+	//cats is an array of objects. Each of those objects has a data property, which itself is an object pertinently
+	//including the properties articles, which is an array, and cat, which is its category.
+	//Provided that data property's cat property matches the category state, we map through and display its articles.
 
 	return (
 		<>
-			<h2><u>Top Headlines in the US</u></h2>
+			<h1><u>Top Headlines in the US</u></h1>
 			<ul className='categories'>
-				<span><li>Tech</li></span>
-				<span><li>Health</li></span>
-				<span><li>Science</li></span>
-				<span><li>Business</li></span>
-				<span><li>Entertainment</li></span>
-				<hr />
+				<span onClick={() => setCategory('technology')}><li>Tech</li></span>
+				<span onClick={() => setCategory('health')}><li>Health</li></span>
+				<span onClick={() => setCategory('science')}><li>Science</li></span>
+				<span onClick={() => setCategory('business')}><li>Business</li></span>
+				<span onClick={() => setCategory('entertainment')}><li>Entertainment</li></span>
 			</ul>
+
 			{
-				newsObject.articles.map(article => {
+				cats.filter(catObj => catObj.data.cat === category)[0].data.articles.map(article => {
 					if (article.title !== '[Removed]' && article.urlToImage) {
 						return (
 							<figure key={article.description} className='article-flex-wrapper'>
-								<h1>{article.title}</h1>
+								<h2>{article.title}</h2>
 								<a target='__blank' href={article.url}>
 									<img className='news-img' src={article.urlToImage} />
 								</a>
@@ -48,6 +63,23 @@ export default function News() {
 					}
 				})
 			}
+
+			{/* {
+				newsObj.articles.map(article => {
+					if (article.title !== '[Removed]' && article.urlToImage) {
+						return (
+							<figure key={article.description} className='article-flex-wrapper'>
+								<h2>{article.title}</h2>
+								<a target='__blank' href={article.url}>
+									<img className='news-img' src={article.urlToImage} />
+								</a>
+								<text>— {article.source.name}</text>
+								<hr />
+							</figure>
+						);
+					}
+				})
+			} */}
 		</>
 	);
 

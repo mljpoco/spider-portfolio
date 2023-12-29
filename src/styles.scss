@@ -19,7 +19,6 @@ $lg: 992px;
 body {
 	max-width: 100%;
 	height: 100%;
-	overflow-x: hidden;
 	font-family: 'DMSans';
 }
 
@@ -38,7 +37,8 @@ hr {
 	color: $light;
 }
 
-ul, li {
+ul,
+li {
 	list-style-type: none;
 }
 
@@ -48,8 +48,7 @@ h1 {
 }
 
 h2 {
-	margin-left: .75em;
-	align-self: center;
+	text-align: center;
 }
 
 a {
@@ -68,7 +67,8 @@ header span {
 	cursor: default;
 }
 
-header a, .categories span {
+header a,
+.categories span {
 	text-decoration: none;
 	position: relative;
 	color: $dark;
@@ -82,12 +82,14 @@ header a, .categories span {
 	padding: 0 .4em .2em .4em;
 }
 
-header a:hover, .categories span:hover {
+header a:hover,
+.categories span:hover {
 	cursor: pointer;
 	color: $light;
 }
 
-header a::after, .categories span::after {
+header a::after,
+.categories span::after {
 	position: absolute;
 	content: "";
 	top: 0;
@@ -99,20 +101,24 @@ header a::after, .categories span::after {
 	transition: .1s linear;
 }
 
-a:hover::after, .categories span:hover::after {
+a:hover::after,
+.categories span:hover::after {
 	width: 100%;
 }
 
 p {
-	width: 200%;
+	width: 100%;
 	font-size: 1.1em;
+	text-wrap: wrap;
+	grid-column: 1 / -1;
 }
 
 footer {
-	padding: .75em 2em 0 0;
 	position: sticky;
-	bottom: 0vh;
+	bottom: 0px;
+	padding: .75em 2em 0 0;
 	justify-content: space-around;
+	z-index: 3;
 }
 
 footer a {
@@ -146,15 +152,15 @@ footer a:hover {
 
 .personal {
 	flex-basis: 50%;
-	height: 100vh;
-	overflow-y: scroll;
+	height: 100%;
+	overflow-y: clip;
 }
 
 .fetched-flex-wrapper {
 	display: flex;
 	flex-basis: 50%;
-	height: 100vh;
-	overflow-y: scroll;
+	height: 100%;
+	overflow-y: clip;
 	flex-direction: column;
 	justify-content: space-between;
 }
@@ -208,13 +214,19 @@ a:has(.news-img),
 
 .loading {
 	align-self: center;
-	margin-top: 40vh;
+	margin-top: 10em;
 	animation: bounce 2s ease infinite;
 }
 
-.categories {
+.error {
 	align-self: center;
-	margin: 1em 1em 0 2em;
+	margin-top: 10em;
+	text-decoration: underline $secondary-color;
+	font-style: italic;
+}
+
+.categories {
+	margin: 1.2em 1em 0 0;
 	font-size: 1.3em;
 }
 
@@ -225,12 +237,26 @@ a:has(.news-img),
 	.main-flex-wrapper {
 		flex-direction: row;
 	}
+
+	.fetched-flex-wrapper {
+		height: 100vh;
+		overflow-y: scroll;
+	}
+	.personal {
+		height: 100vh;
+	}
+}
+
+@media (min-width: $md) and (max-width: 1184px) {
+	.personal {
+		overflow-y: scroll;
+	}
 }
 
 @media (min-width: 1149px) {
 	.contact {
 		margin-top: 0;
-		padding: 0 .4em .2em .4em;
+		padding: 0 .4em 0 .4em;
 	}
 
 	.h-line {
