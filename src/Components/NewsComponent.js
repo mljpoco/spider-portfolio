@@ -1,18 +1,16 @@
 import { useState } from 'react';
-import { useQueries, useQuery } from 'react-query';
+import { useQueries } from 'react-query';
 import axios from 'axios';
 
 async function fetchNews(cat) {
 	const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=${cat}&apiKey=9078a681190b472aa41e2074e0df4fee`);
 	res.data.cat = cat;
-	console.log(res.data);
 	return res.data;
 }
 
 export default function News() {
 
 	const [category, setCategory] = useState('technology');
-	// const { data: newsObject, error, isLoading } = useQuery(['articlesData', category], () => fetchNews(category));
 
 	const cats = useQueries([
 		{ queryKey: ['tech', 'technology'], queryFn: () => fetchNews('technology') },
@@ -31,7 +29,7 @@ export default function News() {
 	if (error) {
 		return <h1 className='error'>Error: {error.message}</h1>
 	}
-console.log()
+
 	//cats is an array of objects. Each of those objects has a data property, which itself is an object pertinently
 	//including the properties articles, which is an array, and cat, which is its category.
 	//Provided that data property's cat property matches the category state, we map through and display its articles.
@@ -63,24 +61,6 @@ console.log()
 					}
 				})
 			}
-
-			{/* {
-				newsObj.articles.map(article => {
-					if (article.title !== '[Removed]' && article.urlToImage) {
-						return (
-							<figure key={article.description} className='article-flex-wrapper'>
-								<h2>{article.title}</h2>
-								<a target='__blank' href={article.url}>
-									<img className='news-img' src={article.urlToImage} />
-								</a>
-								<text>— {article.source.name}</text>
-								<hr />
-							</figure>
-						);
-					}
-				})
-			} */}
 		</>
 	);
-
 }
