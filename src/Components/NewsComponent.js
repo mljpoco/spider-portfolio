@@ -36,7 +36,7 @@ export default function News() {
 
 	return (
 		<>
-			<h1><u>Top Headlines in the US</u></h1>
+			<h1><u>Top US Headlines</u></h1>
 			<ul className='categories'>
 				<span onClick={() => setCategory('technology')}><li>Tech</li></span>
 				<span onClick={() => setCategory('health')}><li>Health</li></span>
@@ -50,11 +50,11 @@ export default function News() {
 					if (article.title !== '[Removed]' && article.urlToImage) {
 						return (
 							<figure key={article.description} className='article-flex-wrapper'>
-								<h2>{article.title}</h2>
 								<a target='__blank' href={article.url}>
+									<h2 className='headline'>{article.title}</h2>
 									<img className='news-img' src={article.urlToImage} />
 								</a>
-								<text>— {article.source.name}</text>
+								<text className='news-source'>— {article.source.name}</text>
 								<hr />
 							</figure>
 						);
