@@ -68,14 +68,14 @@ header span {
 }
 
 header a,
-.categories span {
+.settings span {
 	text-decoration: none;
 	position: relative;
 	color: $dark;
 	transition: .1s linear;
 }
 
-.categories span {
+.settings span {
 	margin-right: 1em;
 	display: inline-block;
 	z-index: 1;
@@ -83,13 +83,13 @@ header a,
 }
 
 header a:hover,
-.categories span:hover {
+.settings span:hover {
 	cursor: pointer;
 	color: $light;
 }
 
 header a::after,
-.categories span::after {
+.settings span::after {
 	position: absolute;
 	content: "";
 	top: 0;
@@ -102,7 +102,7 @@ header a::after,
 }
 
 a:hover::after,
-.categories span:hover::after {
+.settings span:hover::after {
 	width: 100%;
 }
 
@@ -235,11 +235,21 @@ a:has(.news-img),
 	font-style: italic;
 }
 
-.categories {
+.settings {
 	margin: 1.2em 1em 0 0;
 	font-size: 1.3em;
 }
-
+//weather styles
+.weather-box {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid $secondary-color;
+	height: 100%;
+}
+.weather-details {
+	flex-direction: column;
+}
 
 //we want the flex direction to be column for less than $md
 

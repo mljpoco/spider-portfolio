@@ -37,14 +37,13 @@ export default function News() {
 	return (
 		<>
 			<h1><u>Top US Headlines</u></h1>
-			<ul className='categories'>
+			<ul className='settings'>
 				<span onClick={() => setCategory('technology')}><li>Tech</li></span>
 				<span onClick={() => setCategory('health')}><li>Health</li></span>
 				<span onClick={() => setCategory('science')}><li>Science</li></span>
 				<span onClick={() => setCategory('business')}><li>Business</li></span>
 				<span onClick={() => setCategory('entertainment')}><li>Entertainment</li></span>
 			</ul>
-
 			{
 				cats.filter(catObj => catObj.data.cat === category)[0].data.articles.map(article => {
 					if (article.title !== '[Removed]' && article.urlToImage) {
