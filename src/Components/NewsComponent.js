@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQueries } from 'react-query';
 import axios from 'axios';
 
@@ -10,7 +10,11 @@ async function fetchNews(cat) {
 
 export default function News() {
 
-	const [category, setCategory] = useState('technology');
+	const [category, setCategory] = useState(JSON.parse(localStorage.getItem('category')) || 'technology');
+
+	useEffect(() => {
+		localStorage.setItem('category', JSON.stringify(category));
+	}, [category]);
 
 	const cats = useQueries([
 		{ queryKey: ['tech', 'technology'], queryFn: () => fetchNews('technology') },
@@ -36,7 +40,7 @@ export default function News() {
 
 	return (
 		<>
-			<h1><u>Top US Headlines</u></h1>
+			<h1 id='top'><u>Top US Headlines</u></h1>
 			<ul className='settings'>
 				<span onClick={() => setCategory('technology')}><li>Tech</li></span>
 				<span onClick={() => setCategory('health')}><li>Health</li></span>
@@ -44,16 +48,23 @@ export default function News() {
 				<span onClick={() => setCategory('business')}><li>Business</li></span>
 				<span onClick={() => setCategory('entertainment')}><li>Entertainment</li></span>
 			</ul>
+			<a href='/' onClick={e => {
+				let top = document.getElementById('top');
+				e.preventDefault();
+				top && top.scrollIntoView({ behavior: "smooth", block: "start" });
+			}}>
+				<img className='scrolltop' src='./upArrow.png' />
+			</a>
 			{
 				cats.filter(catObj => catObj.data.cat === category)[0].data.articles.map(article => {
-					if (article.title !== '[Removed]' && article.urlToImage) {
+					if (article.title !== '[Removed]' && article.urlToImage && article.author) {
 						return (
 							<figure key={article.description} className='article-flex-wrapper'>
 								<a target='__blank' href={article.url}>
 									<h2 className='headline'>{article.title}</h2>
 									<img className='news-img' src={article.urlToImage} />
 								</a>
-								<text className='news-source'>— {article.source.name}</text>
+								<text className='article-author'>— {article.author}</text>
 								<hr />
 							</figure>
 						);

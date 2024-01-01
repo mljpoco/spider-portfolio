@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
 async function fetchWeather(loc) {
 	const res = await axios.get(`https://api.weatherapi.com/v1/current.json?key=9d3828c4896b4c85a4e145942232612&q=${loc}`);
-	console.log(res.data);
-	return res.data.current;
+	return res.data;
 }
 
 export default function Weather() {
 
-	const [location, setLocation] = useState('auto:ip');
-	const [isFahrenheit, switchTemp] = useState(true)
+	const [location, setLocation] = useState(JSON.parse(localStorage.getItem('location')) || 'auto:ip');
+	const [isFahrenheit, switchTemp] = useState(JSON.parse(localStorage.getItem('isFahrenheit')) || true);
+
+	useEffect(() => {
+		localStorage.setItem('location', JSON.stringify(location));
+		localStorage.setItem('isFahrenheit', JSON.stringify(isFahrenheit))
+	}, [location, isFahrenheit]);
+
 	const { data: weatherData, isLoading, error } = useQuery(['weatherData', location], () => fetchWeather(location));
 
 	if (isLoading) {
@@ -23,13 +28,13 @@ export default function Weather() {
 	//weatherData.temp_f.toString()
 	return (
 		<>
-			<h1><u>Weather</u></h1>
+			<h1><u>Weather in {weatherData.location.name}</u></h1>
 			<ul className='settings'>
 				<span onClick={() => switchTemp(!isFahrenheit)}>Change Unit</span>
 			</ul>
 			<figure className='weather-box flex-wrapper'>
 				<div className='weather-form'>
-					<form onSubmit={(e) => {
+					<form onSubmit={e => {
 						e.preventDefault()
 						setLocation(e.target[0].value)
 					}}>
@@ -39,9 +44,9 @@ export default function Weather() {
 					</form>
 				</div>
 				<div className='flex-wrapper weather-details'>
-					<img className='weather-condition-icon' src={weatherData.condition.icon} />
-					<text className='temp'>{isFahrenheit ? weatherData.temp_f.toString() + '°F' : weatherData.temp_c.toString() + '°C'}</text>
-					<text className='weather-condition-text'>{weatherData.condition.text}</text>
+					<img className='weather-condition-icon' src={weatherData.current.condition.icon} />
+					<text className='temp'>{isFahrenheit ? weatherData.current.temp_f.toString() + '°F' : weatherData.current.temp_c.toString() + '°C'}</text>
+					<text className='weather-condition-text'>{weatherData.current.condition.text}</text>
 				</div>
 				<div>other data</div>
 			</figure>

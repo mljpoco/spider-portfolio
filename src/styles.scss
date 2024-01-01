@@ -22,7 +22,7 @@ body {
 	font-family: 'DMSans';
 }
 
-.news-source {
+.article-author {
 	display: block;
 	text-align: right;
 	font-size: 1.1em;
@@ -150,6 +150,16 @@ footer a:hover {
 
 // custom styles
 
+.scrolltop {
+	width: 40px;
+}
+
+a:has(.scrolltop) {
+	position: sticky;
+	top: 83vh;
+	margin-left: 1em;
+}
+
 .personal {
 	flex-basis: 50%;
 	height: 100%;
@@ -236,9 +246,10 @@ a:has(.news-img),
 }
 
 .settings {
-	margin: 1.2em 1em 0 0;
+	margin: .9em 1em 0 0;
 	font-size: 1.3em;
 }
+
 //weather styles
 .weather-box {
 	flex-direction: column;
@@ -247,6 +258,7 @@ a:has(.news-img),
 	border: 1px solid $secondary-color;
 	height: 100%;
 }
+
 .weather-details {
 	flex-direction: column;
 }
