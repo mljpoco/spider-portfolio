@@ -12,7 +12,7 @@ export default function Main() {
 			<div className='personal dark'>
 				<header className='flex-wrapper light'>
 					<span className='name'>Mitchell Poco</span>
-					<span>Software Developer, Author</span>
+					<span>React Developer, Author</span>
 					<div className='h-line'></div>
 					<Link className='contact'>Contact Me</Link>
 				</header>
@@ -21,9 +21,9 @@ export default function Main() {
 					<img src='./thumbnail.png' />
 					<img src='./thumbnail.png' />
 					<img src='./thumbnail.png' />
-					<p><em>
-					- "Mitchell built and deployed a front end from scratch on a tight timeline for presentation to the UN. He's dynamic and professional in his approach to problem solving, and a strong addition to any development team."
-					</em></p>
+					<p>
+					— "We needed a front end developed and deployed from scratch on a tight timeline for presentation to the UN, and Mitchell came through for us with flying colors. A joy to work with."
+					</p>
 				</figure>
 			</div>
 			<div className='fetched-flex-wrapper light'>

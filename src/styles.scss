@@ -1,3 +1,4 @@
+//fonts
 @font-face {
 	font-family: 'Queen of Clubs';
 	src: local('Queen of Clubs'), url(./fonts/QueenOfClubs-p2rO.ttf) format('truetype');
@@ -8,6 +9,13 @@
 	src: local('DMSans'), url(./fonts/DMSans-Regular.woff) format('woff');
 }
 
+@font-face {
+	font-family: 'Hedvig Letters Serif';
+	src: local('Hedvig Letters Serif'), url(./fonts/HedvigLettersSerif-Regular-VariableFont_opsz.ttf) format('truetype');
+}
+
+//variables
+
 $dark: #230903;
 $light: #f8f4f9;
 $secondary-color: #ef5d60;
@@ -16,16 +24,13 @@ $sm: 576px;
 $md: 768px;
 $lg: 992px;
 
+//element styles
+
 body {
 	max-width: 100%;
 	height: 100%;
 	font-family: 'DMSans';
-}
-
-.article-author {
-	display: block;
-	text-align: right;
-	font-size: 1.1em;
+	letter-spacing: 1px;
 }
 
 hr {
@@ -56,6 +61,7 @@ a {
 }
 
 header {
+	letter-spacing: normal;
 	position: sticky;
 	top: 0px;
 	flex-wrap: wrap;
@@ -67,19 +73,110 @@ header span {
 	cursor: default;
 }
 
+p {
+	color: $light;
+	line-height: 1.5;
+	width: 100%;
+	font-family: 'Hedvig Letters Serif';
+	font-size: 1.1em;
+	text-wrap: wrap;
+	grid-column: 1 / -1;
+}
+
+footer {
+	position: sticky;
+	bottom: 0px;
+	padding: .75em 2em 0 0;
+	justify-content: space-between;
+	z-index: 3;
+	flex-wrap: wrap;
+}
+
+footer a {
+	margin: .25em 0 .75em .25em;
+	text-decoration: underline transparent;
+	color: $light;
+	transition: text-decoration .3s linear;
+}
+
+footer a:hover {
+	text-decoration-color: $light;
+}
+
+input {
+	font-size: 1em;
+	padding: .8em 1em .8em 1em;
+	color: $dark;
+	background-color: $light;
+	border: 2px solid $dark;
+	border-radius: 3px 3px 3px 3px;
+}
+
+input:active,
+input:focus {
+	outline: none;
+	border: 2px solid $tertiary-color;
+}
+
+button {
+	all: unset;
+	color: $dark;
+	cursor: pointer;
+	padding: .8em 1em .7em 1em;
+	background-color: $light;
+	border: 2px solid $dark;
+	border-radius: 3px 3px 3px 3px;
+}
+
+button:hover {
+	background-color: $tertiary-color;
+	border: 2px solid $tertiary-color;
+	color: $light;
+	text-decoration: underline;
+}
+
+// general custom styles
+
+.flex-wrapper {
+	display: flex;
+}
+
+.dark {
+	background-color: $dark;
+	color: $light;
+}
+
+.light {
+	background-color: $light;
+	color: $dark;
+}
+
+.settings {
+	margin: .9em 1em 0 0;
+	font-size: 1.3em;
+	justify-content: center;
+}
+
+.settings span {
+	display: inline-block;
+	z-index: 1;
+	padding: 0 .4em .2em .4em;
+}
+
+.settings span:first-of-type {
+	border-left: 2px solid $dark;
+}
+
+.settings span:last-of-type {
+	border-right: 2px solid $dark;
+}
+
 header a,
 .settings span {
 	text-decoration: none;
 	position: relative;
 	color: $dark;
 	transition: .1s linear;
-}
-
-.settings span {
-	margin-right: 1em;
-	display: inline-block;
-	z-index: 1;
-	padding: 0 .4em .2em .4em;
 }
 
 header a:hover,
@@ -106,60 +203,6 @@ a:hover::after,
 	width: 100%;
 }
 
-p {
-	width: 100%;
-	font-size: 1.1em;
-	text-wrap: wrap;
-	grid-column: 1 / -1;
-}
-
-footer {
-	position: sticky;
-	bottom: 0px;
-	padding: .75em 2em 0 0;
-	justify-content: space-around;
-	z-index: 3;
-}
-
-footer a {
-	margin-bottom: .75em;
-	margin-top: .25em;
-	text-decoration: underline transparent;
-	color: $light;
-	transition: text-decoration .3s linear;
-}
-
-footer a:hover {
-	text-decoration-color: $light;
-}
-
-// boilerplate styles
-.flex-wrapper {
-	display: flex;
-}
-
-.dark {
-	background-color: $dark;
-	color: $light;
-}
-
-.light {
-	background-color: $light;
-	color: $dark;
-}
-
-// custom styles
-
-.scrolltop {
-	width: 40px;
-}
-
-a:has(.scrolltop) {
-	position: sticky;
-	top: 83vh;
-	margin-left: 1em;
-}
-
 .personal {
 	flex-basis: 50%;
 	height: 100%;
@@ -175,25 +218,8 @@ a:has(.scrolltop) {
 	justify-content: space-between;
 }
 
-a:has(.headline) {
-	text-decoration: none;
-	color: $dark;
-	font-size: 1.3em;
-}
-
-a:has(.headline):hover {
-	text-decoration: underline;
-}
-
-.h-line {
-	visibility: hidden;
-	height: 1.25px;
-	background: $dark;
-	flex: 1;
-	margin: 1em .5em 0 .5em;
-}
-
 .name {
+	letter-spacing: normal;
 	font-family: 'Queen of Clubs';
 	flex-basis: 100%;
 	font-size: 5em;
@@ -202,14 +228,6 @@ a:has(.headline):hover {
 
 .name+span {
 	font-size: 1.5em;
-}
-
-a:has(.news-img),
-.news-img {
-	display: block;
-	margin: auto;
-	max-width: 90%;
-	height: auto;
 }
 
 .main-flex-wrapper {
@@ -235,7 +253,7 @@ a:has(.news-img),
 .loading {
 	align-self: center;
 	margin-top: 10em;
-	animation: bounce 2s ease infinite;
+	animation: bounce 2s linear infinite;
 }
 
 .error {
@@ -245,9 +263,51 @@ a:has(.news-img),
 	font-style: italic;
 }
 
-.settings {
-	margin: .9em 1em 0 0;
+//news styles
+.article-flex-wrapper {
+	animation: fadeinright .4s linear;
+}
+
+.article-author {
+	display: block;
+	text-align: right;
+	font-size: 1.1em;
+}
+
+a:has(.news-img),
+.news-img {
+	display: block;
+	margin: auto;
+	max-width: 90%;
+	height: auto;
+}
+
+a:has(.headline) {
+	text-decoration: none;
+	color: $dark;
 	font-size: 1.3em;
+}
+
+a:has(.headline):hover {
+	text-decoration: underline;
+}
+
+.h-line {
+	visibility: hidden;
+	height: 1.25px;
+	background: $dark;
+	flex: 1;
+	margin: 1em .5em 0 .5em;
+}
+
+.scrolltop {
+	width: 70px;
+}
+
+a:has(.scrolltop) {
+	position: sticky;
+	top: 80vh;
+	margin-left: .5em;
 }
 
 //weather styles
@@ -255,13 +315,47 @@ a:has(.news-img),
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid $secondary-color;
 	height: 100%;
+}
+
+.weather-box div:first-of-type {
+	margin-bottom: 1em;
+}
+
+.weather-box div:last-of-type {
+	margin-bottom: 5em;
 }
 
 .weather-details {
 	flex-direction: column;
+	align-items: center;
+	margin: 3em;
+	animation: fadeinright .4s linear;
 }
+
+.weather-condition-text, .temp {
+	font-size: 1.5em;
+}
+
+.weather-condition-text {
+	margin-top: 1em;
+}
+
+.temp {
+	margin-bottom: 1em;
+}
+
+.other-data {
+	border: none;
+	padding: 0 1em 0 1em;
+	flex-direction: column;
+	animation: fadeinright .4s linear;
+}
+
+.odd, .even {
+	border: none;
+}
+
 
 //we want the flex direction to be column for less than $md
 
@@ -277,6 +371,27 @@ a:has(.news-img),
 
 	.personal {
 		height: 100vh;
+	}
+
+	.other-data {
+		flex-direction: row;
+	}
+
+	.other-data span {
+		border-right: 2px solid $dark;
+		padding: 0 .5em 0 .5em;
+	}
+
+	.other-data span:last-of-type {
+		border-right: none;
+	}
+
+	.odd {
+		border-top: 2px solid $dark;
+	}
+
+	.even {
+		border-bottom: 2px solid $dark;
 	}
 }
 
@@ -306,4 +421,15 @@ a:has(.news-img),
 		transform: translateY(-25%);
 	}
 
+}
+
+@keyframes fadeinright {
+	0% {
+		transform: translateX(-15%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }

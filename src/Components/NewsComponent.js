@@ -11,6 +11,7 @@ async function fetchNews(cat) {
 export default function News() {
 
 	const [category, setCategory] = useState(JSON.parse(localStorage.getItem('category')) || 'technology');
+	const [arrow, setArrow] = useState('./up-arrow.png')
 
 	useEffect(() => {
 		localStorage.setItem('category', JSON.stringify(category));
@@ -51,9 +52,9 @@ export default function News() {
 			<a href='/' onClick={e => {
 				let top = document.getElementById('top');
 				e.preventDefault();
-				top && top.scrollIntoView({ behavior: "smooth", block: "start" });
+				top && top.scrollIntoView({ behavior: "smooth" });
 			}}>
-				<img className='scrolltop' src='./upArrow.png' />
+				<img onMouseOver={() => setArrow('./up-arrow-filled.png')} onMouseLeave={() => setArrow('./up-arrow.png')} className='scrolltop' src={arrow} />
 			</a>
 			{
 				cats.filter(catObj => catObj.data.cat === category)[0].data.articles.map(article => {
