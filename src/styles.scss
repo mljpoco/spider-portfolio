@@ -33,6 +33,10 @@ body {
 	letter-spacing: 1px;
 }
 
+ul {
+	all: unset;
+}
+
 hr {
 	z-index: 2;
 }
@@ -132,7 +136,6 @@ button:hover {
 	background-color: $tertiary-color;
 	border: 2px solid $tertiary-color;
 	color: $light;
-	text-decoration: underline;
 }
 
 // general custom styles
@@ -152,31 +155,31 @@ button:hover {
 }
 
 .settings {
-	margin: .9em 1em 0 0;
+	flex-direction: row;
+	margin-top: 1em;
 	font-size: 1.3em;
+	flex-wrap: wrap;
 	justify-content: center;
+	align-items: center;
 }
 
-.settings span {
-	display: inline-block;
-	z-index: 1;
-	padding: 0 .4em .2em .4em;
-}
-
-.settings span:first-of-type {
-	border-left: 2px solid $dark;
-}
-
-.settings span:last-of-type {
-	border-right: 2px solid $dark;
-}
-
-header a,
-.settings span {
+header a {
 	text-decoration: none;
 	position: relative;
 	color: $dark;
 	transition: .1s linear;
+}
+
+.settings span {
+	position: relative;
+	color: $dark;
+	transition: .1s linear;
+	display: inline-block;
+	z-index: 1;
+	margin-bottom: .5em;
+	padding: 0 .4em .2em .4em;
+	background-color: #ec406844;
+	border-radius: 12px;
 }
 
 header a:hover,
@@ -252,19 +255,22 @@ a:hover::after,
 
 .loading {
 	align-self: center;
-	margin-top: 10em;
+	justify-self: center;
+	margin: 1em;
 	animation: bounce 2s linear infinite;
 }
 
 .error {
 	align-self: center;
-	margin-top: 10em;
+	justify-self: center;
+	margin: 1em;
 	text-decoration: underline $secondary-color;
 	font-style: italic;
 }
 
 //news styles
 .article-flex-wrapper {
+	margin-top: -3em;
 	animation: fadeinright .4s linear;
 }
 
@@ -282,6 +288,10 @@ a:has(.news-img),
 	height: auto;
 }
 
+.headline {
+	font-family: 'Hedvig Letters Serif';
+}
+
 a:has(.headline) {
 	text-decoration: none;
 	color: $dark;
@@ -292,22 +302,14 @@ a:has(.headline):hover {
 	text-decoration: underline;
 }
 
-.h-line {
-	visibility: hidden;
-	height: 1.25px;
-	background: $dark;
-	flex: 1;
-	margin: 1em .5em 0 .5em;
-}
-
 .scrolltop {
 	width: 70px;
 }
 
 a:has(.scrolltop) {
 	position: sticky;
-	top: 80vh;
-	margin-left: .5em;
+	top: 75vh;
+	margin-left: .1em;
 }
 
 //weather styles
@@ -333,7 +335,8 @@ a:has(.scrolltop) {
 	animation: fadeinright .4s linear;
 }
 
-.weather-condition-text, .temp {
+.weather-condition-text,
+.temp {
 	font-size: 1.5em;
 }
 
@@ -350,9 +353,16 @@ a:has(.scrolltop) {
 	padding: 0 1em 0 1em;
 	flex-direction: column;
 	animation: fadeinright .4s linear;
+	justify-content: center;
+	align-items: center;
 }
 
-.odd, .even {
+.other-data span {
+	flex-wrap: nowrap;
+}
+
+.odd,
+.even {
 	border: none;
 }
 
@@ -360,8 +370,23 @@ a:has(.scrolltop) {
 //we want the flex direction to be column for less than $md
 
 @media (min-width: $md) {
-	.main-flex-wrapper {
+
+	.main-flex-wrapper,
+	.other-data {
 		flex-direction: row;
+	}
+
+	.settings span {
+		text-decoration: none;
+		border-radius: 0;
+	}
+
+	.settings span:first-of-type {
+		border-left: 2px solid $dark;
+	}
+
+	.settings span:last-of-type {
+		border-right: 2px solid $dark;
 	}
 
 	.fetched-flex-wrapper {
@@ -371,10 +396,6 @@ a:has(.scrolltop) {
 
 	.personal {
 		height: 100vh;
-	}
-
-	.other-data {
-		flex-direction: row;
 	}
 
 	.other-data span {
@@ -392,6 +413,10 @@ a:has(.scrolltop) {
 
 	.even {
 		border-bottom: 2px solid $dark;
+	}
+
+	.error, .loading, .helsinki {
+		margin-top: 9em;
 	}
 }
 
@@ -428,6 +453,7 @@ a:has(.scrolltop) {
 		transform: translateX(-15%);
 		opacity: 0;
 	}
+
 	100% {
 		transform: translateX(0);
 		opacity: 1;

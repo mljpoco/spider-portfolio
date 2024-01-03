@@ -42,7 +42,7 @@ export default function News() {
 	return (
 		<>
 			<h1 id='top'><u>Top US Headlines</u></h1>
-			<ul className='settings'>
+			<ul className='settings flex-wrapper'>
 				<span onClick={() => setCategory('technology')}><li>Tech</li></span>
 				<span onClick={() => setCategory('health')}><li>Health</li></span>
 				<span onClick={() => setCategory('science')}><li>Science</li></span>

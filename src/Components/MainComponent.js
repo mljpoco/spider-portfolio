@@ -22,7 +22,7 @@ export default function Main() {
 					<img src='./thumbnail.png' />
 					<img src='./thumbnail.png' />
 					<p>
-					— "We needed a front end developed and deployed from scratch on a tight timeline for presentation to the UN, and Mitchell came through for us with flying colors. A joy to work with."
+						— "His skills and abilities for web development, web page design, and web connectedness always amazed me and if he was not aware of some small detail, he found the answer quickly. I would not hesitate to recommend him."
 					</p>
 				</figure>
 			</div>
