@@ -4,7 +4,6 @@ import axios from 'axios';
 
 async function fetchWeather(loc) {
 	const res = await axios.get(`https://api.weatherapi.com/v1/current.json?key=9d3828c4896b4c85a4e145942232612&q=${loc}`);
-	console.log(res.data);
 	return res.data;
 }
 

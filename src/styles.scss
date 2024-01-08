@@ -366,6 +366,23 @@ a:has(.scrolltop) {
 	border: none;
 }
 
+//astronomy styles
+.apod-wrapper {
+  flex-direction: column;
+align-items: center;
+}
+
+.apod {
+  max-width: 600px;
+  height: auto;
+  position: relative;
+  margin: auto;
+}
+
+.apod-desc {
+  color: $dark;
+  flex-shrink: 2;
+}
 
 //we want the flex direction to be column for less than $md
 
