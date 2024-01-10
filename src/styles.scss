@@ -463,11 +463,27 @@ a:has(.scrolltop) {
   height: auto;
   position: relative;
   margin: auto;
+  cursor: pointer;
+}
+
+.apod-open {
+  flex: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  animation: popout .3s linear;
+  z-index: 4;
+  max-width: 100vw;
+  height: auto;
+  background-color: $light;
 }
 
 .apod-desc {
   text-align: justify;
-  max-width: 600px;
+  max-width: 100%;
   color: $dark;
   flex-shrink: 2;
 }
