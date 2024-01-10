@@ -15,9 +15,8 @@ export default function Main() {
   }, []);
 
   const detectKeyDown = (e) => {
-    console.log(isModalHidden)
-    if (!isModalHidden && e.key === 'Escape') {
-      toggleModal(!isModalHidden);
+    if (e.key === 'Escape') {
+      toggleModal(true);
     }
   }
 
@@ -29,7 +28,7 @@ export default function Main() {
     <>
       <div className='modal-wrapper' hidden={isModalHidden}>
         <div className='flex-wrapper modal'>
-          <img className='x' onClick={() => toggleModal(!isModalHidden)} src={xState} onMouseOver={() => toggleX('./x-active.png')} onMouseLeave={() => toggleX('./x-regular.png')} />
+          <img className='x' onClick={() => toggleModal(true)} src={xState} onMouseOver={() => toggleX('./x-active.png')} onMouseLeave={() => toggleX('./x-regular.png')} />
           <h2>Contact Form</h2>
           <form action='https://formsubmit.co/mitchpoco@mitchpo.co' method='POST' className='flex-wrapper contact-form'>
             <label htmlFor='name'>
@@ -55,7 +54,7 @@ export default function Main() {
             <span className='name'>Mitchell Poco</span>
             <span className='titles'>React Developer, Author</span>
             <div className='h-line'></div>
-            <a onClick={() => toggleModal(!isModalHidden)} className='contact'>Contact Me</a>
+            <a onClick={() => toggleModal(false)} className='contact'>Contact Me</a>
           </header>
           <figure className='grid-container'>
             <img src='./thumbnail.png' />
