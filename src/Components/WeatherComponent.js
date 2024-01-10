@@ -31,7 +31,7 @@ export default function Weather() {
 		);
 	}
 	if (error) {
-		return <h1 className='loading'>Error: {error.message}</h1>
+		return <h1 className='error'>Error: {error.message}</h1>
 	}
 
 	return (

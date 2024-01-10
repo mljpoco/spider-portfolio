@@ -15,7 +15,7 @@ export default function Astronomy() {
   }
 
   if (error) {
-    return <h1>{error.messsage}</h1>
+    return <h1 className='error'>Error: {error.message}</h1>
   }
 
   return (

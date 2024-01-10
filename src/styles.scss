@@ -66,6 +66,7 @@ a {
 }
 
 header {
+  direction: ltr;
   letter-spacing: normal;
   position: sticky;
   top: 0px;
@@ -79,6 +80,7 @@ header span {
 }
 
 p {
+  direction: ltr;
   color: $light;
   line-height: 1.5;
   width: 100%;
@@ -90,9 +92,10 @@ p {
 
 footer {
   position: sticky;
+  margin-top: 1em;
   bottom: 0px;
   padding: .75em 2em 0 0;
-  justify-content: space-between;
+  justify-content: space-evenly;
   z-index: 3;
   flex-wrap: wrap;
 }
@@ -218,6 +221,7 @@ a:hover::after,
   flex-basis: 50%;
   height: 100%;
   overflow-y: clip;
+  overflow-x: clip;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -230,8 +234,12 @@ a:hover::after,
   cursor: default;
 }
 
-.name+span {
+.titles {
   font-size: 1.5em;
+}
+
+.contact, .titles {
+  padding: 0 .4em .2em .4em;
 }
 
 .main-flex-wrapper {
@@ -269,9 +277,9 @@ a:hover::after,
   font-style: italic;
 }
 
-.modal {
+.modal-wrapper {
   flex: none;
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
@@ -279,13 +287,13 @@ a:hover::after,
   margin: auto;
   background-color: $dark;
   color: $light;
-  width: 45vw;
-  height: 45vh;
+  width: 80vw;
+  height: 100vh;
   z-index: 4;
-  animation: popout .1s linear;
+  animation: popout .3s linear;
 }
 
-div:has(.x) {
+.modal {
   flex-direction: column;
 }
 
@@ -299,9 +307,52 @@ div:has(.x) {
   border-radius: 360px;
 }
 
+.contact-form {
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form span {
+  margin: 1em;
+}
+
+textarea {
+  margin: 1em 1em 0 1em;
+  font-family: 'Hedvig Letters Serif';
+}
+
+textarea:active,
+textarea:focus {
+  outline: none;
+  border: 2px solid $tertiary-color;
+}
+
+.contact-form input {
+  width: 42.75%;
+}
+
+.contact-form label {
+  margin-left: 1em;
+}
+
+.count {
+  opacity: .75;
+  font-size: smaller;
+}
+
+.contact-btn {
+  align-self: flex-end;
+  width: 50px;
+  margin-right: 1em;
+}
+
 .dim {
   animation: dim .1s linear;
   animation-fill-mode: forwards;
+  ::selection {
+    background-color: transparent;
+    color: inherit;
+  }
 }
 
 //news styles
@@ -345,7 +396,6 @@ a:has(.headline):hover {
 a:has(.scrolltop) {
   position: sticky;
   top: 75vh;
-  margin-left: .1em;
 }
 
 //weather styles
@@ -409,7 +459,7 @@ a:has(.scrolltop) {
 }
 
 .apod {
-  max-width: 600px;
+  max-width: 100%;
   height: auto;
   position: relative;
   margin: auto;
@@ -425,6 +475,11 @@ a:has(.scrolltop) {
 //we want the flex direction to be column for less than $md
 
 @media (min-width: $md) {
+
+  .modal-wrapper {
+    height: 82vh;
+    width: 50vw;
+  }
 
   .main-flex-wrapper,
   .other-data {
@@ -447,10 +502,12 @@ a:has(.scrolltop) {
   .fetched-flex-wrapper {
     height: 100vh;
     overflow-y: scroll;
+    overflow-x: clip;
   }
 
   .personal {
     height: 100vh;
+    direction: rtl;
   }
 
   .other-data span {
@@ -497,13 +554,16 @@ a:has(.scrolltop) {
 //animations
 @keyframes popout {
   0% {
-    height: 20vh;
-    width: 20vw;
+    width: 0;
+    opacity: 0;
+  }
+
+  25% {
     opacity: 0;
   }
 
   100% {
-    size: 100%;
+    width: 100;
     opacity: 1;
   }
 }
