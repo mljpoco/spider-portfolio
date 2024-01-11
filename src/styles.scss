@@ -319,6 +319,7 @@ a:hover::after,
 textarea {
   margin: 1em 1em 0 1em;
   font-family: 'Hedvig Letters Serif';
+  resize: none;
 }
 
 textarea:active,

@@ -52,7 +52,7 @@ export default function Main() {
         <div className='personal dark'>
           <header className='flex-wrapper light'>
             <span className='name'>Mitchell Poco</span>
-            <span className='titles'>React Developer, Author</span>
+            <span className='titles'>Web Developer, Author</span>
             <div className='h-line'></div>
             <a onClick={() => toggleModal(false)} className='contact'>Contact Me</a>
           </header>
