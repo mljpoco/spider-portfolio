@@ -70,8 +70,8 @@ export default function Main() {
           <img className='cropface' src='./cropface.png' hidden={isFaceHidden} />
           <Routes>
             <Route exact path='/' element={<News />} />
-            <Route exact path='/weather' element={<Weather />} />
-            <Route exact path='/astronomy' element={<Astronomy />} />
+            <Route path='/weather' element={<Weather />} />
+            <Route path='/astronomy' element={<Astronomy />} />
           </Routes>
           <footer className='flex-wrapper dark'>
             <Link to='/' >News</Link>
