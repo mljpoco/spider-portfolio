@@ -77,7 +77,7 @@ export default function News() {
         cats.filter(catObj => catObj.data.cat === category)[0].data.data.map(article => {
           if (article.title && article.image_url && article.source) {
             return (
-              <figure key={article.description} className='article-flex-wrapper'>
+              <figure key={article.uuid} className='article-flex-wrapper'>
                 <a target='__blank' href={article.url}>
                   <h2 className='headline'>{article.title}</h2>
                   <img className='news-img' src={article.image_url} />
