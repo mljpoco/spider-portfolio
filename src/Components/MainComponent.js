@@ -7,6 +7,7 @@ import Astronomy from './AstronomyComponent';
 export default function Main() {
 
   const [isModalHidden, toggleModal] = useState(true);
+  const [isFaceHidden, hideFace] = useState(true);
   const [xState, toggleX] = useState('./x-regular.png');
   const [count, setCount] = useState(0);
 
@@ -52,21 +53,21 @@ export default function Main() {
         <div className='personal dark'>
           <header className='flex-wrapper light'>
             <span className='name'>Mitchell Poco</span>
-            <span className='titles'>Web Developer, Author</span>
-            <div className='h-line'></div>
-            <a onClick={() => toggleModal(false)} className='contact'>Contact Me</a>
+            <span className='titles'>Software Developer, Author</span>
+            <a onMouseEnter={() => hideFace(false)} onMouseLeave={() => hideFace(true)} onClick={() => toggleModal(false)} className='contact'>Contact Me</a>
           </header>
           <figure className='grid-container'>
-            <img src='./thumbnail.png' />
-            <img src='./thumbnail.png' />
-            <img src='./thumbnail.png' />
-            <img src='./thumbnail.png' />
+            <a href='https://rockstarelite.xyz' target='_blank'><img src='./rse-thumb.png' /></a>
+            <a href='https://mitchpo.co' target='_blank'><img src='./dpp-thumb.png' /></a>
+            <a href='https://indigenouslanguages.org' target='_blank'><img src='./dill-thumb.png' /></a>
+            <a href='https://wearymuser.xyz/index.html' target='_blank'><img src='./wm-thumb.png' /></a>
             <p>
               — "His skills and abilities for web development, web page design, and web connectedness always amazed me and if he was not aware of some small detail, he found the answer quickly. I would not hesitate to recommend him."
             </p>
           </figure>
         </div>
         <div className='fetched-flex-wrapper light'>
+          <img className='cropface' src='./cropface.png' hidden={isFaceHidden} />
           <Routes>
             <Route path='/' element={<News />} />
             <Route path='/weather' element={<Weather />} />

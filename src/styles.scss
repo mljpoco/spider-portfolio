@@ -92,7 +92,6 @@ p {
 
 footer {
   position: sticky;
-  margin-top: 1em;
   bottom: 0px;
   padding: .75em 2em 0 0;
   justify-content: space-evenly;
@@ -242,6 +241,7 @@ a:hover::after,
   padding: 0 .4em .2em .4em;
 }
 
+
 .main-flex-wrapper {
   height: 100%;
   max-width: 100%;
@@ -260,6 +260,15 @@ a:hover::after,
   object-fit: cover;
   width: 100%;
   max-height: 100%;
+  border-radius: 9px;
+  outline: 2px solid transparent;
+  transition: border-radius .2s, outline .2s;
+  cursor: pointer;
+}
+
+.grid-container img:hover {
+  border-radius: 0;
+  outline: 2px solid $tertiary-color;
 }
 
 .loading {
@@ -356,6 +365,15 @@ textarea:focus {
   }
 }
 
+.cropface {
+  position: absolute;
+  max-width: 70px;
+  height: auto;
+  transform: rotate(180deg);
+  animation: lurkin 4s ease-out;
+  z-index: 3;
+}
+
 //news styles
 .article-flex-wrapper {
   margin-top: -3em;
@@ -391,10 +409,12 @@ a:has(.headline):hover {
 }
 
 .scrolltop {
+  z-index: 2;
   width: 70px;
 }
 
 a:has(.scrolltop) {
+  z-index: 2;
   position: sticky;
   top: 75vh;
 }
@@ -487,6 +507,7 @@ a:has(.scrolltop) {
   max-width: 100%;
   color: $dark;
   flex-shrink: 2;
+  z-index: 2;
 }
 
 //we want the flex direction to be column for less than $md
@@ -569,6 +590,14 @@ a:has(.scrolltop) {
 }
 
 //animations
+@keyframes lurkin {
+  0% {
+    top: -10em;
+  }
+  100% {
+    top: 0;
+  }
+}
 @keyframes popout {
   0% {
     width: 0;

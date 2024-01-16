@@ -20,9 +20,11 @@ export default function Astronomy() {
 
   return (
     <>
-      <h1><u>NASA Astronomy Picture of the Day</u></h1>
+      <h1><u>NASA APOD</u></h1>
       <figure className='flex-wrapper apod-wrapper'>
-        <h3><em>{apod.title}</em></h3>
+        <h3>
+          <em>{apod.title}</em>
+        </h3>
         <a href={apod.url} target='_blank'><img className='apod' src={apod.url} /></a>
         <p className='apod-desc'>{apod.explanation}</p>
       </figure>
