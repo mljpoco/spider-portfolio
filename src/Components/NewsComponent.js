@@ -3,14 +3,15 @@ import { useQueries } from 'react-query';
 import axios from 'axios';
 
 async function fetchNews(cat) {
-	const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=${cat}&apiKey=9078a681190b472aa41e2074e0df4fee`);
+  let date = new Date();
+	const res = await axios.get(`https://api.thenewsapi.com/v1/news/top?api_token=T1evILD6QWIuHu9RYAMczqHIUQIFwG5qNlW2zpoB&language=en&categories=${cat}`);
 	res.data.cat = cat;
 	return res.data;
 }
 
 export default function News() {
 
-	const [category, setCategory] = useState(JSON.parse(localStorage.getItem('category')) || 'technology');
+	const [category, setCategory] = useState(JSON.parse(localStorage.getItem('category')) || 'tech');
 	const [arrow, setArrow] = useState('./up-arrow.png')
 
 	useEffect(() => {
@@ -18,7 +19,7 @@ export default function News() {
 	}, [category]);
 
 	const cats = useQueries([
-		{ queryKey: ['tech', 'technology'], queryFn: () => fetchNews('technology') },
+		{ queryKey: ['tech', 'tech'], queryFn: () => fetchNews('tech') },
 		{ queryKey: ['health', 'health'], queryFn: () => fetchNews('health') },
 		{ queryKey: ['science', 'science'], queryFn: () => fetchNews('science') },
 		{ queryKey: ['business', 'business'], queryFn: () => fetchNews('business') },
@@ -36,14 +37,14 @@ export default function News() {
 	}
 
 	//cats is an array of objects. Each of those objects has a data property, which itself is an object pertinently
-	//including the properties articles, which is an array, and cat, which is its category.
-	//Provided that data property's cat property matches the category state, we map through and display its articles.
-
+	//including the properties data, which is an array, and cat, which is its category.
+	//Provided the first data property's cat property matches the category state, we map through and display its articles.
+  console.log(cats);
 	return (
 		<>
-			<h1 id='top'><u>Top US Headlines</u></h1>
+			<h1 id='top'><u>Top Stories</u></h1>
 			<ul className='settings flex-wrapper'>
-				<span onClick={() => setCategory('technology')}><li>Tech</li></span>
+				<span onClick={() => setCategory('tech')}><li>Tech</li></span>
 				<span onClick={() => setCategory('health')}><li>Health</li></span>
 				<span onClick={() => setCategory('science')}><li>Science</li></span>
 				<span onClick={() => setCategory('business')}><li>Business</li></span>
@@ -57,15 +58,15 @@ export default function News() {
 				<img onMouseOver={() => setArrow('./up-arrow-filled.png')} onMouseLeave={() => setArrow('./up-arrow.png')} className='scrolltop' src={arrow} />
 			</a>
 			{
-				cats.filter(catObj => catObj.data.cat === category)[0].data.articles.map(article => {
-					if (article.title !== '[Removed]' && article.urlToImage && article.author) {
+				cats.filter(catObj => catObj.data.cat === category)[0].data.data.map(article => {
+					if (article.title && article.image_url && article.source) {
 						return (
 							<figure key={article.description} className='article-flex-wrapper'>
 								<a target='__blank' href={article.url}>
 									<h2 className='headline'>{article.title}</h2>
-									<img className='news-img' src={article.urlToImage} />
+									<img className='news-img' src={article.image_url} />
 								</a>
-								<text className='article-author'>— {article.author}</text>
+								<text className='article-source'>— {article.source}</text>
 								<hr />
 							</figure>
 						);
