@@ -69,9 +69,9 @@ export default function Main() {
         <div className='fetched-flex-wrapper light'>
           <img className='cropface' src='./cropface.png' hidden={isFaceHidden} />
           <Routes>
-            <Route path='/' element={<News />} />
-            <Route path='/weather' element={<Weather />} />
-            <Route path='/astronomy' element={<Astronomy />} />
+            <Route exact path='/' element={<News />} />
+            <Route exact path='/weather' element={<Weather />} />
+            <Route exact path='/astronomy' element={<Astronomy />} />
           </Routes>
           <footer className='flex-wrapper dark'>
             <Link to='/' >News</Link>
