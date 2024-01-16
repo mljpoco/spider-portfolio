@@ -5,13 +5,23 @@ import axios from 'axios';
 async function fetchNews(cat) {
   let date = new Date();
   date.setDate(date.getDate() - 11);
-  const formattedDate = 
-  `${date.getFullYear()}-${(date.getMonth() + 1)
-  .toString().padStart(2, '0')}-${(date.getDate())
-  .toString().padStart(2, '0')}`;
-  console.log(formattedDate) 
-  const res = await axios.get(`https://api.thenewsapi.com/v1/news/top?api_token=T1evILD6QWIuHu9RYAMczqHIUQIFwG5qNlW2zpoB&language=en&categories=${cat}&published_after=${formattedDate}`);
+  const boutAWeekAgo =
+    `${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString().padStart(2, '0')}-${(date.getDate())
+        .toString().padStart(2, '0')}`;
+        
+  const res = await axios.get(`https://api.thenewsapi.com/v1/news/top?api_token=T1evILD6QWIuHu9RYAMczqHIUQIFwG5qNlW2zpoB&language=en&categories=${cat}&published_after=${boutAWeekAgo}`);
+
+  const everyImg = res.data.data.map(article => article.image_url);
+  res.data.data = res.data.data.filter(article => {
+    let presence = everyImg.indexOf(article.image_url);
+    if (everyImg.indexOf(article.image_url, presence + 1) < 0) {
+      return article.image_url;
+    }
+  });
+
   res.data.cat = cat;
+
   return res.data;
 }
 
