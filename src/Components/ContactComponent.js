@@ -6,11 +6,11 @@ export default function Contact() {
   const [xState, toggleX] = useState('./x-regular.png');
   const [count, setCount] = useState(0);
 
-  const messageRef = useRef(null);
+  const myRef = useRef(null);
 
   useEffect(() => {
     setTimeout(function () {
-      messageRef.current.scrollIntoView({behavior: 'smooth'});
+      myRef.current.scrollIntoView({behavior: 'smooth'});
     }, 0);
   }, []);
 
@@ -19,7 +19,7 @@ export default function Contact() {
   return (
     <div className='flex-wrapper contact-page'>
       <img className='x' src={xState} onMouseOver={() => toggleX('./x-active.png')} onMouseLeave={() => toggleX('./x-regular.png')} onClick={() => navigate(-1)} />
-      <h2 ref={messageRef}>Contact Form</h2>
+      <h2 ref={myRef}>Contact Form</h2>
       <form action='https://formsubmit.co/mitchpoco@mitchpo.co' method='POST' className='flex-wrapper contact-form'>
         <label htmlFor='name'>
           Your Name

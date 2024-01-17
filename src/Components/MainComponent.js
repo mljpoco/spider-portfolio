@@ -1,5 +1,5 @@
 import { Route, Routes, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import News from './NewsComponent';
 import Weather from './WeatherComponent';
 import Astronomy from './AstronomyComponent';
@@ -8,6 +8,15 @@ import Contact from './ContactComponent';
 export default function Main() {
 
   const [isFaceHidden, hideFace] = useState(true);
+
+  function scrollTop() {
+    let top = document.getElementById('top');
+    setTimeout(function () {
+      top.scrollIntoView({ behavior: "smooth" });;
+    }, 0);
+    
+    console.log('triggered')
+  }
 
   return (
     <>
@@ -29,6 +38,7 @@ export default function Main() {
           </figure>
         </div>
         <div className='fetched-flex-wrapper light'>
+          <span id='top'></span>
           <img className='cropface' src='./cropface.png' hidden={isFaceHidden} />
           <Routes>
             <Route exact path='/' element={<News />} />
@@ -37,9 +47,9 @@ export default function Main() {
             <Route path='/contact' element={<Contact />} />
           </Routes>
           <footer className='flex-wrapper dark'>
-            <Link to='/' >News</Link>
-            <Link to='/weather' >Weather</Link>
-            <Link to='/astronomy' >Astronomy</Link>
+            <Link to='/' onClick={() => scrollTop()}>News</Link>
+            <Link to='/weather' onClick={() => scrollTop()}>Weather</Link>
+            <Link to='/astronomy' onClick={() => scrollTop()}>Astronomy</Link>
           </footer>
         </div>
       </main>
