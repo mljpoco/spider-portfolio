@@ -15,7 +15,7 @@ async function fetchNews(cat) {
   const everyImg = res.data.data.map(article => article.image_url);
   res.data.data = res.data.data.filter(article => {
     let presence = everyImg.indexOf(article.image_url);
-    if (everyImg.indexOf(article.image_url, presence + 1) < 0) {
+    if (everyImg.indexOf(article.image_url, presence + 1) < 0 && article.image_url.includes('https') && article.url.includes('https')) {
       return article.image_url;
     }
   });
