@@ -286,24 +286,10 @@ a:hover::after,
   font-style: italic;
 }
 
-.modal-wrapper {
-  flex: none;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  background-color: $dark;
-  color: $light;
-  width: 80vw;
-  height: 100vh;
-  z-index: 4;
-  animation: popout .3s linear;
-}
-
-.modal {
+.contact-page {
   flex-direction: column;
+  animation: fadeinright .4s linear;
+  height: 150vh;
 }
 
 .x {
@@ -356,15 +342,6 @@ textarea:focus {
   margin-right: 1em;
 }
 
-.dim {
-  animation: dim .1s linear;
-  animation-fill-mode: forwards;
-  ::selection {
-    background-color: transparent;
-    color: inherit;
-  }
-}
-
 .cropface {
   position: absolute;
   max-width: 70px;
@@ -401,7 +378,7 @@ a:has(.news-img),
 a:has(.headline) {
   text-decoration: none;
   color: $dark;
-  font-size: 1.3em;
+  font-size: 1em;
 }
 
 a:has(.headline):hover {
@@ -416,7 +393,7 @@ a:has(.headline):hover {
 a:has(.scrolltop) {
   z-index: 2;
   position: sticky;
-  top: 75vh;
+  top: 50vh;
 }
 
 //weather styles
@@ -477,6 +454,7 @@ a:has(.scrolltop) {
 .apod-wrapper {
   flex-direction: column;
   align-items: center;
+  animation: fadeinright .4s linear;
 }
 
 .apod {
@@ -513,11 +491,6 @@ a:has(.scrolltop) {
 //we want the flex direction to be column for less than $md
 
 @media (min-width: $md) {
-
-  .modal-wrapper {
-    height: 82vh;
-    width: 50vw;
-  }
 
   .main-flex-wrapper,
   .other-data {
