@@ -119,6 +119,12 @@ input {
   border-radius: 3px 3px 3px 3px;
 }
 
+textarea {
+  font-family: 'Hedvig Letters Serif';
+  font-size: 1.2em;
+  color: $dark;
+}
+
 input:active,
 input:focus {
   outline: none;
@@ -313,7 +319,6 @@ a:hover::after,
 
 textarea {
   margin: 1em 1em 0 1em;
-  font-family: 'Hedvig Letters Serif';
   resize: none;
 }
 
