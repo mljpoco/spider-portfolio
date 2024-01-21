@@ -11,7 +11,7 @@ async function fetchNews(cat) {
         .toString().padStart(2, '0')}`;
         
   const res = await axios.get(`https://api.thenewsapi.com/v1/news/top?api_token=T1evILD6QWIuHu9RYAMczqHIUQIFwG5qNlW2zpoB&language=en&categories=${cat}&published_after=${boutAWeekAgo}`);
-  //avoiding duplicates
+  //avoiding duplicates, filtering out insecure resources
   const everyImg = res.data.data.map(article => article.image_url);
   res.data.data = res.data.data.filter(article => {
     let presence = everyImg.indexOf(article.image_url);
