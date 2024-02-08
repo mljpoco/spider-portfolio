@@ -15,4 +15,4 @@ Hello! This is where you will find my other projects, as well as three separatel
   <li>Contact me</li>
 </ol>
 
-<h2>Check it out at <a href='https://mitchcodes.pro'>mitchcodes.pro</a></h2>
+<h2>Check it out at <a target='_blank' href='https://mitchcodes.pro'>mitchcodes.pro</a></h2>
