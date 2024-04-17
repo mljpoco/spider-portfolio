@@ -32,9 +32,6 @@ export default function Main() {
             <a href='https://mitchpo.co' target='_blank'><img src='./dpp-thumb.webp' /></a>
             <a href='https://indigenouslanguages.org' target='_blank'><img src='./dill-thumb.webp' /></a>
             <a href='https://wearymuser.xyz/index.html' target='_blank'><img src='./wm-thumb.webp' /></a>
-            <p>
-              — "His skills and abilities for web development, web page design, and web connectedness always amazed me and if he was not aware of some small detail, he found the answer quickly. I would not hesitate to recommend him."
-            </p>
           </figure>
         </div>
         <div className='fetched-flex-wrapper light'>
